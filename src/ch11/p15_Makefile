@@ -1,0 +1,18 @@
+CC=gcc
+CFLAGS=-std=c23 -Wall -Wextra
+OBJ=p13_main.o p13_file1.o p13_file2.o
+
+prog: $(OBJ)
+	$(CC) $(OBJ) -o $@
+
+p13_main.o: p13_main.c p13_file.h
+	$(CC) $(CFLAGS) -c p13_main.c
+
+p13_file1.o: p13_file1.c p13_file.h
+	$(CC) $(CFLAGS) -c p13_file1.c
+
+p13_file2.o: p13_file2.c p13_file.h
+	$(CC) $(CFLAGS) -c p13_file2.c
+
+clean:
+	rm -f $(OBJ) prog
