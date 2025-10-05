@@ -212,9 +212,9 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Version 0.3.1}
+\subtitle{Version 0.3.2}
 \author{Duc-Tam Nguyen}
-\date{2025-10-02}
+\date{2025-10-05}
 \begin{document}
 \maketitle
 
@@ -22100,7 +22100,7 @@ Here's a simple program that copies a file's contents:
         \ControlFlowTok{return} \DecValTok{1}\OperatorTok{;}
     \OperatorTok{\}}
 
-    \DataTypeTok{char}\NormalTok{ ch}\OperatorTok{;}
+    \DataTypeTok{int}\NormalTok{ ch}\OperatorTok{;}  \CommentTok{// must be int, not char}
     \ControlFlowTok{while} \OperatorTok{((}\NormalTok{ch }\OperatorTok{=}\NormalTok{ fgetc}\OperatorTok{(}\NormalTok{in}\OperatorTok{))} \OperatorTok{!=}\NormalTok{ EOF}\OperatorTok{)} \OperatorTok{\{}
 \NormalTok{        fputc}\OperatorTok{(}\NormalTok{ch}\OperatorTok{,}\NormalTok{ out}\OperatorTok{);}
     \OperatorTok{\}}
@@ -22134,6 +22134,47 @@ Function & Purpose \\
 \texttt{fgetc} & Read one character \\
 \end{longtable}
 
+In more details,
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2595}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1676}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2649}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3081}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Function
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Input Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Output Type
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{fprintf(FILE\ *stream,\ const\ char\ *format,\ ...)} & Write
+formatted text to a file & Values to format (like \texttt{int},
+\texttt{double}, \texttt{char\ *}) & \texttt{int} (number of characters
+written or negative on error) \\
+\texttt{fscanf(FILE\ *stream,\ const\ char\ *format,\ ...)} & Read
+formatted text from a file & File stream & Number of items successfully
+read \\
+\texttt{fputs(const\ char\ *str,\ FILE\ *stream)} & Write a string (no
+newline) & \texttt{const\ char\ *} string & \texttt{int} (non-negative
+on success, \texttt{EOF} on error) \\
+\texttt{fgets(char\ *str,\ int\ size,\ FILE\ *stream)} & Read a line (up
+to \texttt{size-1}) & File stream & \texttt{char\ *} (pointer to
+\texttt{str} or \texttt{NULL} on error/EOF) \\
+\texttt{fputc(int\ ch,\ FILE\ *stream)} & Write one character & Single
+character (\texttt{int}) & \texttt{int} (character written or
+\texttt{EOF} on error) \\
+\texttt{fgetc(FILE\ *stream)} & Read one character & File stream &
+\texttt{int} (character read or \texttt{EOF} on end/error) \\
+\end{longtable}
+
 These let you work at different levels, line by line, word by word, or
 character by character.
 
@@ -22159,9 +22200,8 @@ in a buffer.
 
 \DataTypeTok{int}\NormalTok{ main}\OperatorTok{(}\DataTypeTok{void}\OperatorTok{)} \OperatorTok{\{}
     \DataTypeTok{FILE} \OperatorTok{*}\NormalTok{fp }\OperatorTok{=}\NormalTok{ fopen}\OperatorTok{(}\StringTok{"greetings.txt"}\OperatorTok{,} \StringTok{"w"}\OperatorTok{);}
-
     \ControlFlowTok{if} \OperatorTok{(}\NormalTok{fp }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
-\NormalTok{        printf}\OperatorTok{(}\StringTok{"Error opening file.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
+\NormalTok{        printf}\OperatorTok{(}\StringTok{"Error opening file for writing.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
         \ControlFlowTok{return} \DecValTok{1}\OperatorTok{;}
     \OperatorTok{\}}
 
@@ -22170,7 +22210,12 @@ in a buffer.
 \NormalTok{    fclose}\OperatorTok{(}\NormalTok{fp}\OperatorTok{);}
 
 \NormalTok{    fp }\OperatorTok{=}\NormalTok{ fopen}\OperatorTok{(}\StringTok{"greetings.txt"}\OperatorTok{,} \StringTok{"r"}\OperatorTok{);}
-    \DataTypeTok{char}\NormalTok{ line}\OperatorTok{[}\DecValTok{100}\OperatorTok{];}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{fp }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{        printf}\OperatorTok{(}\StringTok{"Error opening file for reading.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
+        \ControlFlowTok{return} \DecValTok{1}\OperatorTok{;}
+    \OperatorTok{\}}
+
+    \DataTypeTok{char}\NormalTok{ line}\OperatorTok{[}\DecValTok{100}\OperatorTok{]} \OperatorTok{=} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\};}  \CommentTok{// optional explicit initialization}
 
 \NormalTok{    printf}\OperatorTok{(}\StringTok{"File contents:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
     \ControlFlowTok{while} \OperatorTok{(}\NormalTok{fgets}\OperatorTok{(}\NormalTok{line}\OperatorTok{,} \KeywordTok{sizeof}\OperatorTok{(}\NormalTok{line}\OperatorTok{),}\NormalTok{ fp}\OperatorTok{))} \OperatorTok{\{}
@@ -22190,6 +22235,24 @@ File contents:
 Hello from C!
 This is another line.
 \end{verbatim}
+
+Note on \texttt{char\ line{[}100{]}}:
+
+This declares a fixed-size buffer that \texttt{fgets()} uses to store
+one line of text at a time. It can hold up to 99 characters plus the
+null terminator
+\texttt{\textquotesingle{}\textbackslash{}0\textquotesingle{}}.
+Initializing it with \texttt{\{0\}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{char}\NormalTok{ line}\OperatorTok{[}\DecValTok{100}\OperatorTok{]} \OperatorTok{=} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+ensures all elements start as zero, which is a good habit for safety and
+clarity - though \texttt{fgets()} will overwrite the buffer each time it
+successfully reads a line.
 
 \subsubsection{Why It Matters}\label{why-it-matters-81}
 
