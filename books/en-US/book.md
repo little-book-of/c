@@ -16299,7 +16299,7 @@ int main(void) {
         return 1;
     }
 
-    char ch;
+    int ch;  // must be int, not char
     while ((ch = fgetc(in)) != EOF) {
         fputc(ch, out);
     }
@@ -16325,6 +16325,17 @@ Try it, you'll create an exact text copy.
 | `fputc`   | Write one character  |
 | `fgetc`   | Read one character   |
 
+In more details,
+
+| Function                                         | Purpose                         | Input Type                                        | Output Type                                               |
+| ------------------------------------------------ | ------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
+| `fprintf(FILE *stream, const char *format, ...)` | Write formatted text to a file  | Values to format (like `int`, `double`, `char *`) | `int` (number of characters written or negative on error) |
+| `fscanf(FILE *stream, const char *format, ...)`  | Read formatted text from a file | File stream                                       | Number of items successfully read                         |
+| `fputs(const char *str, FILE *stream)`           | Write a string (no newline)     | `const char *` string                             | `int` (non-negative on success, `EOF` on error)           |
+| `fgets(char *str, int size, FILE *stream)`       | Read a line (up to `size-1`)    | File stream                                       | `char *` (pointer to `str` or `NULL` on error/EOF)        |
+| `fputc(int ch, FILE *stream)`                    | Write one character             | Single character (`int`)                          | `int` (character written or `EOF` on error)               |
+| `fgetc(FILE *stream)`                            | Read one character              | File stream                                       | `int` (character read or `EOF` on end/error)              |
+
 These let you work at different levels, line by line, word by word, or character by character.
 
 #### 82.9 Don't Forget `fclose`
@@ -16344,9 +16355,8 @@ If you forget, data might not be fully saved, it could still be sitting in a buf
 
 int main(void) {
     FILE *fp = fopen("greetings.txt", "w");
-
     if (fp == NULL) {
-        printf("Error opening file.\n");
+        printf("Error opening file for writing.\n");
         return 1;
     }
 
@@ -16355,7 +16365,12 @@ int main(void) {
     fclose(fp);
 
     fp = fopen("greetings.txt", "r");
-    char line[100];
+    if (fp == NULL) {
+        printf("Error opening file for reading.\n");
+        return 1;
+    }
+
+    char line[100] = {0};  // optional explicit initialization
 
     printf("File contents:\n");
     while (fgets(line, sizeof(line), fp)) {
@@ -16374,6 +16389,18 @@ File contents:
 Hello from C!
 This is another line.
 ```
+
+Note on `char line[100]`:
+
+This declares a fixed-size buffer that `fgets()` uses to store one line of text at a time. It can hold up to 99 characters plus the null terminator `'\0'`.
+Initializing it with `{0}`:
+
+```c
+char line[100] = {0};
+```
+
+ensures all elements start as zero, which is a good habit for safety and clarity - though `fgets()` will overwrite the buffer each time it successfully reads a line.
+
 
 #### Why It Matters
 
