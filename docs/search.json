@@ -10,8 +10,8 @@
     ]
   },
   {
-    "objectID": "books/en-us/book.html",
-    "href": "books/en-us/book.html",
+    "objectID": "books/en-US/book.html",
+    "href": "books/en-US/book.html",
     "title": "The Book",
     "section": "",
     "text": "Chapter 1. Getting Started",
@@ -20,8 +20,8 @@
     ]
   },
   {
-    "objectID": "books/en-us/book.html#epilogue.-the-spirit-of-c",
-    "href": "books/en-us/book.html#epilogue.-the-spirit-of-c",
+    "objectID": "books/en-US/book.html#epilogue.-the-spirit-of-c",
+    "href": "books/en-US/book.html#epilogue.-the-spirit-of-c",
     "title": "The Book",
     "section": "Epilogue. The Spirit of C",
     "text": "Epilogue. The Spirit of C\nC is not just about syntax, pointers, or the compiler. It is a mindset, one that teaches you to think about how machines actually work.\nWhen you write in C, you’re speaking the native tongue of computers. You tell the processor what to do, byte by byte, without any illusion between you and the hardware.\nYou’ve learned that:\n\nEvery variable has a precise place in memory\nEvery function call has a cost on the stack\nEvery pointer is a promise to be careful\nEvery line you write translates into instructions and data\n\nC rewards those who think deeply and punishes those who guess. But when you master it, you gain a kind of freedom that few languages can match.",
@@ -30,8 +30,8 @@
     ]
   },
   {
-    "objectID": "books/en-us/book.html#the-path-beyond",
-    "href": "books/en-us/book.html#the-path-beyond",
+    "objectID": "books/en-US/book.html#the-path-beyond",
+    "href": "books/en-US/book.html#the-path-beyond",
     "title": "The Book",
     "section": "The Path Beyond",
     "text": "The Path Beyond\nNow that you can code confidently in C, here are natural next steps:\n1. Systems Programming Explore Linux internals, system calls, and kernel modules. Books like The Linux Programming Interface or your future “Little Book of System Programming with C” are perfect companions.\n2. Compilers and Language Tools Write your own parser or bytecode interpreter. C gives you the precision to build new languages from scratch.\n3. Operating Systems and Embedded Try building a tiny OS (like xv6), or program microcontrollers with bare-metal C. You’ll see how C shapes the firmware world.\n4. Libraries and Open Source Contribute to open-source projects written in C, from SQLite to Redis to Git. You’ll read world-class C and learn design by example.\n5. Build Your Own X in C You can build your own database, HTTP server, shell, or compiler. Each one is a new chance to reapply what you’ve learned here.",
@@ -40,8 +40,8 @@
     ]
   },
   {
-    "objectID": "books/en-us/book.html#a-note-from-the-author",
-    "href": "books/en-us/book.html#a-note-from-the-author",
+    "objectID": "books/en-US/book.html#a-note-from-the-author",
+    "href": "books/en-US/book.html#a-note-from-the-author",
     "title": "The Book",
     "section": "A Note from the Author",
     "text": "A Note from the Author\nWhen Dennis Ritchie designed C in the 1970s, he wasn’t just inventing a language. He was inventing a way to think, about data, control, and abstraction at the same time.\nFifty years later, the same clarity still matters. C is timeless because it stays close to truth.\nEvery byte you allocate, every loop you write, every segmentation fault you fix, it all teaches you how computers really work.\nSo keep experimenting. Break things. Fix them. Rebuild.\nThat’s how every systems engineer begins.",
@@ -50,8 +50,8 @@
     ]
   },
   {
-    "objectID": "books/en-us/book.html#final-exercise",
-    "href": "books/en-us/book.html#final-exercise",
+    "objectID": "books/en-US/book.html#final-exercise",
+    "href": "books/en-US/book.html#final-exercise",
     "title": "The Book",
     "section": "Final Exercise",
     "text": "Final Exercise\nBefore you leave this book, write one last C program. It doesn’t need to do anything fancy, just something that reminds you why you love building things from first principles.\n#include &lt;stdio.h&gt;\n\nint main(void) {\n    printf(\"I learned to think in C.\\n\");\n    return 0;\n}\nCompile it. Run it. Smile. You now speak the language of the machine.\nThe Little Book of C End of Volume",

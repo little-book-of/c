@@ -6,12 +6,12 @@ book:
   title: &book_title "The Little Book of C"
   subtitle: &book_subtitle "Version 0.4.0"
   author: &book_author "Duc-Tam Nguyen"
-  date: &book_date "2025-10-16"
+  date: &book_date "2025-10-26"
   output-file: book
   chapters:
     - index.qmd
-    # - books/en-us/cheatsheet.md
-    - books/en-us/book.md
+    # - books/en-US/cheatsheet.md
+    - books/en-US/book.md
 
 website:
   title: *book_title
