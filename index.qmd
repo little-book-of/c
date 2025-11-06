@@ -1,11 +1,11 @@
 # Content 
 
-*A Friendly Guide from Numbers to Neural Networks*
+*A concise, structured guide to the C programming language. *
 
-- [Download PDF](https://github.com/little-book-of/algorithms/blob/main/releases/book.pdf) - print-ready
-- [Download EPUB](https://github.com/little-book-of/algorithms/blob/main/releases/book.epub) - e-reader friendly
-- [View LaTex](https://github.com/little-book-of/algorithms/blob/main/releases/book.tex) - `.tex` source
-- [Source code (Github)](https://github.com/little-book-of/algorithms) - Markdown source
-- [Read on GitHub Pages](https://little-book-of.github.io/algorithms) - view online
+- [Download PDF](https://github.com/little-book-of/c/blob/main/releases/book.pdf) - print-ready
+- [Download EPUB](https://github.com/little-book-of/c/blob/main/releases/book.epub) - e-reader friendly
+- [View LaTex](https://github.com/little-book-of/c/blob/main/releases/book.tex) - `.tex` source
+- [Source code (Github)](https://github.com/little-book-of/c) - Markdown source
+- [Read on GitHub Pages](https://little-book-of.github.io/c) - view online
 
 Licensed under **CC BY-NC-SA 4.0**.
