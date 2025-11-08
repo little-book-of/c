@@ -1,5 +1,8 @@
 # Zig is so cool, C is cooler 
 
+**Some parts of this article were refined with help from LLMs to improve clarity and technical accuracy. These are just personal notes, but I would really appreciate feedback: feel free to share your thoughts, open an issue, or send a pull request!**
+
+
 ### Foreword
 Zig is an impressive language. It is clean, direct, and thoughtfully designed. It brings fresh energy to systems programming and makes many good choices about safety, tooling, and cross-compilation. It is no surprise that people admire it.
 
