@@ -29,7 +29,7 @@ Cross-compilation looks like a standout feature in Zig, although C developers ha
 You can target an embedded ARM board or a RISC-V chip with one flag:
 
 ```bash
-gcc main.c --target=arm-linux-gnueabihf -o app
+arm-linux-gnueabihf-gcc main.c -o app
 ```
 
 Zig makes the first steps easy by bundling compilers and libraries together, and those tools still build on the long history of C-based toolchains.. The same GCC and Clang backends that power Zig have supported hundreds of architectures for many years, forming the backbone of modern cross-compilation.
