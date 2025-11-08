@@ -26,13 +26,13 @@ A typical system already includes all the headers, linkers, and libraries you ne
 
 Cross-compilation looks like a standout feature in Zig, although C developers have been doing the same thing for decades.. Programmers have long built software for systems different from their own, and entire ecosystems such as Linux distributions, mobile toolchains, and firmware environments depend on this everyday practice.
 
-You can target an embedded ARM board or a RISC-V chip with one flag:
+In C, you typically use a dedicated cross-compiler built for the target architecture, for example:
 
 ```bash
 arm-linux-gnueabihf-gcc main.c -o app
 ```
 
-Zig makes the first steps easy by bundling compilers and libraries together, and those tools still build on the long history of C-based toolchains.. The same GCC and Clang backends that power Zig have supported hundreds of architectures for many years, forming the backbone of modern cross-compilation.
+Zig simplifies this process by bundling compilers, linkers, and target libraries into a single toolchain, so you can produce binaries for many platforms without setting up separate cross toolchains. Under the hood, Zig still relies on the same GCC and Clang backends that have supported a wide range of architectures for decades, continuing the long tradition of C-based cross-compilation.
 
 ### Composable Toolchains
 
