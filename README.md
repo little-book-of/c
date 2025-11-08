@@ -44,7 +44,7 @@ Nguyen, Duc-Tam (2025). _The Little Book of C_
 ```
 @book{Nguyen2025TLBoC,
   author = {Duc-Tam Nguyen},
-  title  = {The Little Book of Maths},
+  title  = {The Little Book of C},
   year   = {2025},
   url    = {https://github.com/little-book-of/c}
 }
