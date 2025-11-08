@@ -39,7 +39,7 @@ improving examples.
 
 ## Citation
 
-Nguyen, Duc-Tam (2025). _The Little Book of Maths_
+Nguyen, Duc-Tam (2025). _The Little Book of C_
 
 ```
 @book{Nguyen2025TLBoC,
