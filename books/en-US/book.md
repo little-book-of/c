@@ -5363,17 +5363,29 @@ Rectangle 3.00x4.00
 
 This pairing of `enum` + `union` is a common pattern in real-world systems, known as a **tagged union**.
 
-#### Scoped Enums in Modern C (C23)
+#### Underlying types in Modern C (C23)
 
-C23 introduces a cleaner way to scope enum names:
+In C23, the underlying type of an enumeration refers to the integer type used to
+represent the enum values in memory. Prior to C23, this type was
+implementation-defined and could be any integer type capable of holding all
+enumerator values, typically `int`. With C23, programmers can now explicitly
+specify the underlying type using the syntax `enum name : type`, allowing precise
+control over storage size and signedness (e.g., `enum color : unsigned char`).
+
+This enables more efficient memory usage and predictable behavior across
+platforms, especially in embedded systems or when interfacing with hardware.
+Enumerations with a fixed underlying type are compatible with that type and must
+accommodate all enumerator values; otherwise, a compile-time error occurs.
+
+Example:
 
 ```c
-enum class Mode { READ, WRITE, APPEND };
+enum color : unsigned char {
+    RED,
+    GREEN,
+    BLUE
+};
 ```
-
-This avoids name collisions and allows better type checking —
-similar to `enum class` in C++.
-(Some compilers may not support this yet, but it's worth knowing.)
 
 #### Why It Matters
 
