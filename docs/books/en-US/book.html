@@ -4019,19 +4019,22 @@ Deep copy result: name=Clice age=25</code></pre>
 <span id="cb240-52"><a href="#cb240-52" aria-hidden="true" tabindex="-1"></a>    print_student<span class="op">(</span>c<span class="op">);</span></span>
 <span id="cb240-53"><a href="#cb240-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb240-54"><a href="#cb240-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Modify dynamically allocated memory</span></span>
-<span id="cb240-55"><a href="#cb240-55" aria-hidden="true" tabindex="-1"></a>    strcpy<span class="op">(</span>b<span class="op">-&gt;</span>name<span class="op">,</span> <span class="st">"Bobby"</span><span class="op">);</span></span>
-<span id="cb240-56"><a href="#cb240-56" aria-hidden="true" tabindex="-1"></a>    b<span class="op">-&gt;</span>gpa <span class="op">=</span> <span class="fl">3.6</span><span class="bu">f</span><span class="op">;</span></span>
-<span id="cb240-57"><a href="#cb240-57" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">After update:</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
-<span id="cb240-58"><a href="#cb240-58" aria-hidden="true" tabindex="-1"></a>    print_student<span class="op">(</span>b<span class="op">);</span></span>
-<span id="cb240-59"><a href="#cb240-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-60"><a href="#cb240-60" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Free memory</span></span>
-<span id="cb240-61"><a href="#cb240-61" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>a<span class="op">);</span></span>
-<span id="cb240-62"><a href="#cb240-62" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>b<span class="op">);</span></span>
-<span id="cb240-63"><a href="#cb240-63" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>c<span class="op">);</span></span>
-<span id="cb240-64"><a href="#cb240-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-65"><a href="#cb240-65" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">All memory released.</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
-<span id="cb240-66"><a href="#cb240-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb240-67"><a href="#cb240-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb240-55"><a href="#cb240-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> new_name<span class="op">[]</span> <span class="op">=</span> <span class="st">"Bobby"</span><span class="op">;</span></span>
+<span id="cb240-56"><a href="#cb240-56" aria-hidden="true" tabindex="-1"></a>    b<span class="op">-&gt;</span>name <span class="op">=</span> realloc<span class="op">(</span>b<span class="op">-&gt;</span>name<span class="op">,</span> strlen<span class="op">(</span>new_name<span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb240-57"><a href="#cb240-57" aria-hidden="true" tabindex="-1"></a>    strcpy<span class="op">(</span>b<span class="op">-&gt;</span>name<span class="op">,</span> new_name<span class="op">);</span></span>
+<span id="cb240-58"><a href="#cb240-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-59"><a href="#cb240-59" aria-hidden="true" tabindex="-1"></a>    b<span class="op">-&gt;</span>gpa <span class="op">=</span> <span class="fl">3.6</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb240-60"><a href="#cb240-60" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">After update:</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb240-61"><a href="#cb240-61" aria-hidden="true" tabindex="-1"></a>    print_student<span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb240-62"><a href="#cb240-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-63"><a href="#cb240-63" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Free memory</span></span>
+<span id="cb240-64"><a href="#cb240-64" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb240-65"><a href="#cb240-65" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb240-66"><a href="#cb240-66" aria-hidden="true" tabindex="-1"></a>    free_student<span class="op">(</span>c<span class="op">);</span></span>
+<span id="cb240-67"><a href="#cb240-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-68"><a href="#cb240-68" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">All memory released.</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb240-69"><a href="#cb240-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb240-70"><a href="#cb240-70" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compile and run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb241"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> manual_memory.c <span class="at">-o</span> manual_memory</span>
 <span id="cb241-2"><a href="#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./manual_memory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4897,11 +4900,16 @@ Updated binary: 00000111</code></pre>
 Rectangle 3.00x4.00</code></pre>
 <p>This pairing of <code>enum</code> + <code>union</code> is a common pattern in real-world systems, known as a <strong>tagged union</strong>.</p>
 </section>
-<section id="scoped-enums-in-modern-c-c23" class="level4">
-<h4 class="anchored" data-anchor-id="scoped-enums-in-modern-c-c23">Scoped Enums in Modern C (C23)</h4>
-<p>C23 introduces a cleaner way to scope enum names:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb300"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb300-1"><a href="#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> class Mode <span class="op">{</span> READ<span class="op">,</span> WRITE<span class="op">,</span> APPEND <span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This avoids name collisions and allows better type checking — similar to <code>enum class</code> in C++. (Some compilers may not support this yet, but it’s worth knowing.)</p>
+<section id="underlying-types-in-modern-c-c23" class="level4">
+<h4 class="anchored" data-anchor-id="underlying-types-in-modern-c-c23">Underlying types in Modern C (C23)</h4>
+<p>In C23, the underlying type of an enumeration refers to the integer type used to represent the enum values in memory. Prior to C23, this type was implementation-defined and could be any integer type capable of holding all enumerator values, typically <code>int</code>. With C23, programmers can now explicitly specify the underlying type using the syntax <code>enum name : type</code>, allowing precise control over storage size and signedness (e.g., <code>enum color : unsigned char</code>).</p>
+<p>This enables more efficient memory usage and predictable behavior across platforms, especially in embedded systems or when interfacing with hardware. Enumerations with a fixed underlying type are compatible with that type and must accommodate all enumerator values; otherwise, a compile-time error occurs.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb300"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb300-1"><a href="#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> color <span class="op">:</span> <span class="dt">unsigned</span> <span class="dt">char</span> <span class="op">{</span></span>
+<span id="cb300-2"><a href="#cb300-2" aria-hidden="true" tabindex="-1"></a>    RED<span class="op">,</span></span>
+<span id="cb300-3"><a href="#cb300-3" aria-hidden="true" tabindex="-1"></a>    GREEN<span class="op">,</span></span>
+<span id="cb300-4"><a href="#cb300-4" aria-hidden="true" tabindex="-1"></a>    BLUE</span>
+<span id="cb300-5"><a href="#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="why-it-matters-33" class="level4">
 <h4 class="anchored" data-anchor-id="why-it-matters-33">Why It Matters</h4>

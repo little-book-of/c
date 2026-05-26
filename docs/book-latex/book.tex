@@ -212,9 +212,9 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Version 0.4.0}
+\subtitle{Version 0.5.0}
 \author{Duc-Tam Nguyen}
-\date{2025-10-26}
+\date{2026-05-26}
 \begin{document}
 \maketitle
 
@@ -6198,7 +6198,10 @@ Create a simple ``student record manager'' that can:
 \NormalTok{    print\_student}\OperatorTok{(}\NormalTok{c}\OperatorTok{);}
 
     \CommentTok{// Modify dynamically allocated memory}
-\NormalTok{    strcpy}\OperatorTok{(}\NormalTok{b}\OperatorTok{{-}\textgreater{}}\NormalTok{name}\OperatorTok{,} \StringTok{"Bobby"}\OperatorTok{);}
+    \DataTypeTok{char}\NormalTok{ new\_name}\OperatorTok{[]} \OperatorTok{=} \StringTok{"Bobby"}\OperatorTok{;}
+\NormalTok{    b}\OperatorTok{{-}\textgreater{}}\NormalTok{name }\OperatorTok{=}\NormalTok{ realloc}\OperatorTok{(}\NormalTok{b}\OperatorTok{{-}\textgreater{}}\NormalTok{name}\OperatorTok{,}\NormalTok{ strlen}\OperatorTok{(}\NormalTok{new\_name}\OperatorTok{)} \OperatorTok{+} \DecValTok{1}\OperatorTok{);}
+\NormalTok{    strcpy}\OperatorTok{(}\NormalTok{b}\OperatorTok{{-}\textgreater{}}\NormalTok{name}\OperatorTok{,}\NormalTok{ new\_name}\OperatorTok{);}
+
 \NormalTok{    b}\OperatorTok{{-}\textgreater{}}\NormalTok{gpa }\OperatorTok{=} \FloatTok{3.6}\BuiltInTok{f}\OperatorTok{;}
 \NormalTok{    printf}\OperatorTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{After update:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
 \NormalTok{    print\_student}\OperatorTok{(}\NormalTok{b}\OperatorTok{);}
@@ -7627,20 +7630,34 @@ Rectangle 3.00x4.00
 This pairing of \texttt{enum} + \texttt{union} is a common pattern in
 real-world systems, known as a \textbf{tagged union}.
 
-\subsubsection{Scoped Enums in Modern C
-(C23)}\label{scoped-enums-in-modern-c-c23}
+\subsubsection{Underlying types in Modern C
+(C23)}\label{underlying-types-in-modern-c-c23}
 
-C23 introduces a cleaner way to scope enum names:
+In C23, the underlying type of an enumeration refers to the integer type
+used to represent the enum values in memory. Prior to C23, this type was
+implementation-defined and could be any integer type capable of holding
+all enumerator values, typically \texttt{int}. With C23, programmers can
+now explicitly specify the underlying type using the syntax
+\texttt{enum\ name\ :\ type}, allowing precise control over storage size
+and signedness (e.g., \texttt{enum\ color\ :\ unsigned\ char}).
+
+This enables more efficient memory usage and predictable behavior across
+platforms, especially in embedded systems or when interfacing with
+hardware. Enumerations with a fixed underlying type are compatible with
+that type and must accommodate all enumerator values; otherwise, a
+compile-time error occurs.
+
+Example:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{enum}\NormalTok{ class Mode }\OperatorTok{\{}\NormalTok{ READ}\OperatorTok{,}\NormalTok{ WRITE}\OperatorTok{,}\NormalTok{ APPEND }\OperatorTok{\};}
+\KeywordTok{enum}\NormalTok{ color }\OperatorTok{:} \DataTypeTok{unsigned} \DataTypeTok{char} \OperatorTok{\{}
+\NormalTok{    RED}\OperatorTok{,}
+\NormalTok{    GREEN}\OperatorTok{,}
+\NormalTok{    BLUE}
+\OperatorTok{\};}
 \end{Highlighting}
 \end{Shaded}
-
-This avoids name collisions and allows better type checking --- similar
-to \texttt{enum\ class} in C++. (Some compilers may not support this
-yet, but it's worth knowing.)
 
 \subsubsection{Why It Matters}\label{why-it-matters-33}
 
