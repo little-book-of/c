@@ -52,7 +52,10 @@ int main(void) {
     print_student(c);
 
     // Modify dynamically allocated memory
-    strcpy(b->name, "Bobby");
+    char new_name[] = "Bobby";
+    b->name = realloc(b->name, strlen(new_name) + 1);
+    strcpy(b->name, new_name);
+
     b->gpa = 3.6f;
     printf("\nAfter update:\n");
     print_student(b);
