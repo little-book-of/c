@@ -32,8 +32,8 @@ format:
     toc-depth: 3
     number-sections: false
     theme:
-      light: [cosmo, brand]
-      dark: [darkly, brand]
+      light: [cosmo, brand, custom.scss]
+      dark: [darkly, brand, custom.scss]
     from: markdown+autolink_bare_uris
   epub:
     title: *book_title
